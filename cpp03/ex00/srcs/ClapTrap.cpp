@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:01:47 by nlonka            #+#    #+#             */
-/*   Updated: 2023/06/25 21:33:20 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/07/08 21:49:24 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ ClapTrap::ClapTrap(const ClapTrap &src) : _name(src._name), _hp(src._hp), _energ
 
 ClapTrap::~ClapTrap()
 {
+	std::cout << "[ClapTrap] ";
 	if (!_hp)
-		std::cout << "[ClapTrap] " << _name << "'s limp body is dragged off the floor" << std::endl;
+		std::cout << _name << "'s limp body is dragged off the floor" << std::endl;
 	else if (_hp < 5)
-		std::cout << "[ClapTrap] " << _name << " waddles off with most of their limbs intact" << std::endl;
+		std::cout << _name << " waddles off with most of their limbs intact" << std::endl;
 	else
-		std::cout << "[ClapTrap] " << _name << " walks out cheerily" << std::endl;
+		std::cout << _name << " walks out cheerily" << std::endl;
 }
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &rhs)
@@ -43,6 +44,7 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &rhs)
 
 void	ClapTrap::attack(const std::string &target)
 {
+	std::cout << "[ClapTrap] ";
 	if (!_hp)
 		std::cout << _name << "'s dead body wobbles maliciously" << std::endl;
 	else if (!_energy)

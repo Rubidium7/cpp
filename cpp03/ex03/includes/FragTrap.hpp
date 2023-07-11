@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 18:43:26 by nlonka            #+#    #+#             */
-/*   Updated: 2023/07/08 21:51:54 by nlonka           ###   ########.fr       */
+/*   Created: 2023/07/09 17:56:34 by nlonka            #+#    #+#             */
+/*   Updated: 2023/07/11 11:18:22 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-# include <iostream>
-# include <iomanip>
-# include <string>
+# include "ScavTrap.hpp"
 
-class ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 	public:
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap	&src);
-		~ClapTrap();
+		FragTrap(std::string name, int hp, unsigned int energy, unsigned int dmg);
+		FragTrap(std::string name, int hp, unsigned int dmg);
+		FragTrap(const FragTrap &src);
+		~FragTrap();
 
-		ClapTrap	&operator=(const ClapTrap &rhs);
+		FragTrap	&operator=(const FragTrap &rhs);
 
 		void	attack(const std::string &target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-		unsigned int	getDmg();
-
-	protected:
-		std::string		_name;
-		int				_hp;
-		unsigned int	_energy;
-		unsigned int	_dmg;
+		void	highFivesGuys();
 };
 
 #endif

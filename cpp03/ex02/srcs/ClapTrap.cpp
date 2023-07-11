@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:01:47 by nlonka            #+#    #+#             */
-/*   Updated: 2023/07/08 21:53:19 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/07/09 18:02:20 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &rhs)
 unsigned int	ClapTrap::getDmg()
 {
 	return (_dmg);
+}
+
+
+unsigned int	ClapTrap::getHp()
+{
+	return (_hp);
+}
+
+unsigned int	ClapTrap::getEnergy()
+{
+	return (_energy);
 }
 
 void	ClapTrap::attack(const std::string &target)

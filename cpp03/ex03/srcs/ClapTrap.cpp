@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:01:47 by nlonka            #+#    #+#             */
-/*   Updated: 2023/07/08 21:53:19 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/07/11 10:21:48 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _energy(10), _dmg(0)
 {
-	std::cout << "[ClapTrap] " << _name << " enters the stage" << std::endl;
+	std::cout << "[ClapTrap] " << _name << " created" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &src) : _name(src._name), _hp(src._hp), _energy(src._energy), _dmg(src._dmg)
@@ -24,13 +24,7 @@ ClapTrap::ClapTrap(const ClapTrap &src) : _name(src._name), _hp(src._hp), _energ
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "[ClapTrap] ";
-	if (!_hp)
-		std::cout << _name << "'s limp body is dragged off the floor" << std::endl;
-	else if (_hp < 5)
-		std::cout << _name << " waddles off with most of their limbs intact" << std::endl;
-	else
-		std::cout << _name << " walks out cheerily" << std::endl;
+	std::cout << "[ClapTrap] " << _name << " destroyed" << std::endl;
 }
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &rhs)
@@ -45,6 +39,25 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &rhs)
 unsigned int	ClapTrap::getDmg()
 {
 	return (_dmg);
+}
+
+
+unsigned int	ClapTrap::getHp()
+{
+	return (_hp);
+}
+
+unsigned int	ClapTrap::getEnergy()
+{
+	return (_energy);
+}
+
+void	ClapTrap::printInfo()
+{
+	std::cout << "My, " << _name << "'s, attributes are:" << std::endl;
+	std::cout << "health[" << _hp << "]" << std::endl;
+	std::cout << "energy[" << _energy << "]" << std::endl;
+	std::cout << "damage[" << _dmg << "]" << std::endl;
 }
 
 void	ClapTrap::attack(const std::string &target)

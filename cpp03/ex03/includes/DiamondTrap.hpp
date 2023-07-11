@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 18:43:26 by nlonka            #+#    #+#             */
-/*   Updated: 2023/07/08 21:51:54 by nlonka           ###   ########.fr       */
+/*   Created: 2023/07/09 19:51:26 by nlonka            #+#    #+#             */
+/*   Updated: 2023/07/11 11:12:52 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
 
-# include <iostream>
-# include <iomanip>
-# include <string>
+# include "FragTrap.hpp"
 
-class ClapTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 	public:
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap	&src);
-		~ClapTrap();
+		DiamondTrap(std::string name);
+		DiamondTrap(const DiamondTrap &other);
+		~DiamondTrap();
 
-		ClapTrap	&operator=(const ClapTrap &rhs);
-
+		DiamondTrap	&operator=(const DiamondTrap &rhs);
 		void	attack(const std::string &target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-		unsigned int	getDmg();
+		void	whoAmI();
+		void	printInfo();
 
-	protected:
-		std::string		_name;
-		int				_hp;
-		unsigned int	_energy;
-		unsigned int	_dmg;
+	private:
+		std::string	_name;
 };
 
 #endif
