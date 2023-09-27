@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:32:17 by nlonka            #+#    #+#             */
-/*   Updated: 2023/08/09 13:21:05 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/08/04 19:00:45 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ Animal	&Animal::operator=(const Animal &rhs)
 Animal::~Animal()
 {
 	std::cout << "destructed [Animal]" << std::endl;
+}
+
+std::string	Animal::getType() const
+{
+	return (_type);
 }

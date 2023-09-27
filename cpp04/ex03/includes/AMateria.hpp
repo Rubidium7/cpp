@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 11:16:29 by nlonka            #+#    #+#             */
-/*   Updated: 2023/08/04 20:02:17 by nlonka           ###   ########.fr       */
+/*   Created: 2023/08/09 13:27:04 by nlonka            #+#    #+#             */
+/*   Updated: 2023/08/11 16:00:09 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 
-# include "Brain.hpp"
+# include "ICharacter.hpp"
+# include <iostream>
 
-class Animal
+class AMateria
 {
 	public:
-		Animal();
-		Animal(const Animal &src);
-		virtual ~Animal();
+		AMateria();
+		AMateria(std::string const &type);
+		AMateria(const AMateria &src);
+		virtual ~AMateria();
 
-		Animal &operator=(const Animal &rhs);
-		virtual void	makeSound() const = 0;
-		std::string		getType() const;
+		AMateria &operator=(const AMateria &rhs);
+
+		std::string const	&getType() const;
+
+		virtual AMateria	*clone() const = 0;
+		virtual void		use(ICharacter &target);
 
 	protected:
 		std::string	_type;

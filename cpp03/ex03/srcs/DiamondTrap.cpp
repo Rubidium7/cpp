@@ -20,8 +20,8 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Scav
 	std::cout << "[DiamondTrap] " << _name << " created" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &src) : ClapTrap(src._name + "_clap_name"), 
-	ScavTrap(src._name, 100, 50, 20), 
+DiamondTrap::DiamondTrap(const DiamondTrap &src) : ClapTrap(src._name + "_clap_name"),
+	ScavTrap(src._name, 100, 50, 20),
 	FragTrap(src._name, 100, 100, 30),
 	_name(src._name)
 {

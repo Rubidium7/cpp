@@ -27,7 +27,9 @@ Cat::Cat(const Cat &src)
 
 Cat	&Cat::operator=(const Cat &rhs)
 {
-	this->_brain = rhs._brain;
+	if (this == &rhs)
+		return (*this);
+	this->_brain = new Brain(*rhs._brain);
 	this->_type = rhs._type;
 	return (*this);
 }

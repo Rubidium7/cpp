@@ -6,7 +6,7 @@
 #    By: nlonka <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/13 11:22:19 by nlonka            #+#    #+#              #
-#    Updated: 2023/07/13 14:46:38 by nlonka           ###   ########.fr        #
+#    Updated: 2023/09/05 18:32:07 by nlonka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,13 @@ UP_NAME=$(echo "$1_hpp" | tr '[a-z]' '[A-Z]')
 
 mkdir -p $INC
 mkdir -p $SRCS
+
+
+if [ $# -eq 0 ]; then
+
+	echo "Usage: bash clash.sh <ClassName>"
+	exit 1;
+fi
 
 if ! grep -q "$1.cpp" Makefile; then
 	gsed -i "s/SRCS =.*/& $1.cpp/g" Makefile;

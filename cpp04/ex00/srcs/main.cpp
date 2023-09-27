@@ -20,18 +20,26 @@ int main()
 
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
+	std::cout << "cat:" << std::endl;
 	i->makeSound(); //will output the cat sound!
+	std::cout << "dog:" << std::endl;
 	j->makeSound();
+	std::cout << "animal:" << std::endl;
+	meta->makeSound();
+	delete meta;
+	std::cout << "copying dog to animal:" << std::endl;
+	meta = j;
 	meta->makeSound();
 
 	const WrongAnimal	*mepa = new WrongAnimal();
 	const WrongAnimal	*h = new WrongCat();
 
 	std::cout << h->getType() << " " << std::endl;
+	std::cout << "wrong cat:" << std::endl;
 	h->makeSound(); //will not output the cat sound!
+	std::cout << "wrong animal:" << std::endl;
 	mepa->makeSound();
 
-	delete meta;
 	delete j;
 	delete i;
 	delete mepa;

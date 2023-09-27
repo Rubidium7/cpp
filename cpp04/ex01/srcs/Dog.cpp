@@ -27,7 +27,9 @@ Dog::Dog(const Dog &src)
 
 Dog	&Dog::operator=(const Dog &rhs)
 {
-	this->_brain = rhs._brain;
+	if (this == &rhs)
+		return (*this);
+	this->_brain = new Brain(*rhs._brain);
 	this->_type = rhs._type;
 	return (*this);
 }

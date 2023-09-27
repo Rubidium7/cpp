@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.cpp                                       :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 19:17:53 by nlonka            #+#    #+#             */
-/*   Updated: 2023/08/04 19:19:26 by nlonka           ###   ########.fr       */
+/*   Created: 2023/08/10 11:42:57 by nlonka            #+#    #+#             */
+/*   Updated: 2023/08/11 16:01:59 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongCat.hpp"
+#include "Cure.hpp"
 
-WrongCat::WrongCat()
+Cure::Cure() : AMateria("cure")
 {
-	_type = "WrongCat";
-	std::cout << "constructed [WrongCat]" << std::endl;
+	std::cout << "constructed [Cure]" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &src)
+Cure::Cure(const Cure &src)
 {
-	std::cout << "copy constructed [WrongCat]" << std::endl;
+	std::cout << "copy constructed [Cure]" << std::endl;
 	*this = src;
 }
 
-WrongCat	&WrongCat::operator=(const WrongCat &rhs)
+Cure	&Cure::operator=(const Cure &rhs)
 {
 	this->_type = rhs._type;
 	return (*this);
 }
 
-WrongCat::~WrongCat()
+Cure::~Cure()
 {
-	std::cout << "destructed [WrongCat]" << std::endl;
+	std::cout << "destructed [Cure]" << std::endl;
 }
 
-void	WrongCat::makeSound() const
+AMateria	*Cure::clone() const
 {
-	std::cout << "[WrongCat] mouw meeiw wrongcat sounds" << std::endl;
+	AMateria *ret = new Cure();
+	return (ret);
+}
+
+void	Cure::use(ICharacter &target)
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

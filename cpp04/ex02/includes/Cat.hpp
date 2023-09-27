@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:25:34 by nlonka            #+#    #+#             */
-/*   Updated: 2023/08/05 17:41:27 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/08/04 21:22:29 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ class Cat : public Animal
 		Cat &operator=(const Cat &rhs);
 		void	makeSound() const;
 		Brain	&getBrain();
-		std::string	getType() const;
 
 	private:
 		Brain	*_brain;

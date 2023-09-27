@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 11:16:29 by nlonka            #+#    #+#             */
-/*   Updated: 2023/08/04 20:02:17 by nlonka           ###   ########.fr       */
+/*   Created: 2023/08/10 11:40:09 by nlonka            #+#    #+#             */
+/*   Updated: 2023/08/11 15:42:23 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
-# include "Brain.hpp"
+# include "IMateriaSource.hpp"
 
-class Animal
+class MateriaSource : public IMateriaSource
 {
 	public:
-		Animal();
-		Animal(const Animal &src);
-		virtual ~Animal();
+		MateriaSource();
+		MateriaSource(const MateriaSource &src);
+		~MateriaSource();
 
-		Animal &operator=(const Animal &rhs);
-		virtual void	makeSound() const = 0;
-		std::string		getType() const;
+		MateriaSource &operator=(const MateriaSource &rhs);
+		
+		void		learnMateria(AMateria *mat);
+		AMateria	*createMateria(std::string const &type);
 
-	protected:
-		std::string	_type;
+	private:
+		AMateria	*_recipes[4];
 };
 
 #endif

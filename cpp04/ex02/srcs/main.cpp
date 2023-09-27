@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 17:47:09 by nlonka            #+#    #+#             */
-/*   Updated: 2023/08/05 18:07:24 by nlonka           ###   ########.fr       */
+/*   Created: 2023/08/04 19:55:32 by nlonka            #+#    #+#             */
+/*   Updated: 2023/08/04 21:38:29 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,24 @@
 
 int main()
 {
+	std::cout << "a basic memory test:" << std::endl;
+	Dog basic;
+	{
+		Dog tmp = basic;
+	}
+
+	std::cout << std::endl << "second basic memory test:" << std::endl;
 	const Animal *j = new Dog();
-	const Animal *i = new Cat();	
+	const Animal *i = new Cat();
 
 	delete j;
 	delete i;
 
-	int	ar_size = 7;
+	int	ar_size = 8;
 
 	if (ar_size < 2)
 		return (1);
+	std::cout << std::endl << "creating the animal array:" << std::endl;
 	Animal *animal_array[ar_size];
 	for (int i = 0; i != ar_size; i++)
 	{
@@ -31,13 +39,6 @@ int main()
 			animal_array[i] = new Dog();
 		else
 			animal_array[i] = new Cat();
-	}
-	for (int i = 0; i != ar_size; i++)
-	{
-		std::cout << animal_array[i]->getType() << " ";
-		if (i + 1 == ar_size / 2)
-			std::cout << std::endl;
-		std::cout << std::endl;
 	}
 	Dog	*tmp = new Dog();
 	Cat	*tmp2 = new Cat();

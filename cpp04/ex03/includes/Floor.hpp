@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Floor.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 11:16:29 by nlonka            #+#    #+#             */
-/*   Updated: 2023/08/04 20:02:17 by nlonka           ###   ########.fr       */
+/*   Created: 2023/08/10 17:16:29 by nlonka            #+#    #+#             */
+/*   Updated: 2023/08/11 15:44:42 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef FLOOR_HPP
+# define FLOOR_HPP
 
-# include "Brain.hpp"
+# include "AMateria.hpp"
 
-class Animal
+class Floor
 {
 	public:
-		Animal();
-		Animal(const Animal &src);
-		virtual ~Animal();
+		Floor();
+		Floor(AMateria *mat);
+		Floor(const Floor &src);
+		~Floor();
 
-		Animal &operator=(const Animal &rhs);
-		virtual void	makeSound() const = 0;
-		std::string		getType() const;
+		Floor &operator=(const Floor &rhs);
+		
+		void	dropOnFloor(AMateria *mat);
 
-	protected:
-		std::string	_type;
+	private:
+		Floor		*_next;
+		AMateria	*_material;
 };
 
 #endif

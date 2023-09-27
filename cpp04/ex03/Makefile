@@ -7,17 +7,17 @@ MAGENTA = \033[0;35m
 END = \033[0m
 
 #binary name
-NAME = brainiacs
+NAME = its_friday_im_in_love
 
 #compiler
 C = c++
 
 #compilation flags
-FLAGS = -std=c++98 -Wall -Wextra -Werror -I includes
+FLAGS = -std=c++98 -g -Wall -Wextra -Werror -I includes
 
 OBJS_DIR = obj/
 SRCS_DIR = srcs/
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp
+SRCS = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp Floor.cpp
 
 OBJ_FILES = $(SRCS:.cpp=.o)
 

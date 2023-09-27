@@ -14,8 +14,15 @@
 
 int main()
 {
+	std::cout << "a basic memory test:" << std::endl;
+	Dog basic;
+	{
+		Dog tmp = basic;
+	}
+
+	std::cout << std::endl << "second basic memory test:" << std::endl;
 	const Animal *j = new Dog();
-	const Animal *i = new Cat();	
+	const Animal *i = new Cat();
 
 	delete j;
 	delete i;
@@ -24,6 +31,7 @@ int main()
 
 	if (ar_size < 2)
 		return (1);
+	std::cout << std::endl << "creating the animal array:" << std::endl;
 	Animal *animal_array[ar_size];
 	for (int i = 0; i != ar_size; i++)
 	{

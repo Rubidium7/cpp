@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.cpp                                       :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 19:17:53 by nlonka            #+#    #+#             */
-/*   Updated: 2023/08/04 19:19:26 by nlonka           ###   ########.fr       */
+/*   Created: 2023/08/09 16:14:08 by nlonka            #+#    #+#             */
+/*   Updated: 2023/08/11 16:02:21 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongCat.hpp"
+#include "Ice.hpp"
 
-WrongCat::WrongCat()
+Ice::Ice() : AMateria("ice")
 {
-	_type = "WrongCat";
-	std::cout << "constructed [WrongCat]" << std::endl;
+	std::cout << "constructed [Ice]" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &src)
+Ice::Ice(const Ice &src)
 {
-	std::cout << "copy constructed [WrongCat]" << std::endl;
+	std::cout << "copy constructed [Ice]" << std::endl;
 	*this = src;
 }
 
-WrongCat	&WrongCat::operator=(const WrongCat &rhs)
+Ice	&Ice::operator=(const Ice &rhs)
 {
 	this->_type = rhs._type;
 	return (*this);
 }
 
-WrongCat::~WrongCat()
+Ice::~Ice()
 {
-	std::cout << "destructed [WrongCat]" << std::endl;
+	std::cout << "destructed [Ice]" << std::endl;
 }
 
-void	WrongCat::makeSound() const
+AMateria	*Ice::clone() const
 {
-	std::cout << "[WrongCat] mouw meeiw wrongcat sounds" << std::endl;
+	AMateria *ret = new Ice();
+	return (ret);
+}
+
+void	Ice::use(ICharacter	&target)
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

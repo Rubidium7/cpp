@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 14:40:13 by nlonka            #+#    #+#             */
-/*   Updated: 2023/08/05 17:43:29 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/08/04 21:23:57 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ Dog::Dog(const Dog &src)
 
 Dog	&Dog::operator=(const Dog &rhs)
 {
-	this->_brain = rhs._brain;
+	if (this == &rhs)
+		return (*this);
+	this->_brain = new Brain(*rhs._brain);
 	this->_type = rhs._type;
 	return (*this);
 }
@@ -46,9 +48,4 @@ void	Dog::makeSound() const
 Brain	&Dog::getBrain()
 {
 	return (*_brain);
-}
-
-std::string	Dog::getType() const
-{
-	return (_type);
 }
