@@ -7,7 +7,7 @@ MAGENTA = \033[0;35m
 END = \033[0m
 
 #binary name
-NAME = happy_family
+NAME = MoccaMaster 
 
 #compiler
 C = c++
@@ -17,7 +17,7 @@ FLAGS = -std=c++98 -Wall -Wextra -Werror -I includes
 
 OBJS_DIR = obj/
 SRCS_DIR = srcs/
-SRCS = main.cpp Bureaucrat.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 
 OBJ_FILES = $(SRCS:.cpp=.o)
 

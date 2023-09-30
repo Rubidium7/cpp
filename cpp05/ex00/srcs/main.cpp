@@ -7,23 +7,23 @@ void	divorce_lawyer(Bureaucrat **mutsis, Bureaucrat **faijas)
 	if (*mutsis)
 	{
 		delete *mutsis;
-		*mutsis = nullptr;
+		*mutsis = NULL;
 	}
 	if (*faijas)
 	{
 		delete *faijas;
-		*mutsis = nullptr;
+		*mutsis = NULL;
 	}
-	*faijas = nullptr;
-	*mutsis = nullptr;
+	*faijas = NULL;
+	*mutsis = NULL;
 }
 
 int main()
 {
 	std::cout << "hello it's 9am, welcome to your work at" << std::endl;
 	std::cout << "Hallitus" << std::endl;
-	Bureaucrat *mutsis = nullptr;
-	Bureaucrat *faijas = nullptr;
+	Bureaucrat *mutsis = NULL;
+	Bureaucrat *faijas = NULL;
 	try
 	{
 		mutsis = new Bureaucrat("mutsis", 150);

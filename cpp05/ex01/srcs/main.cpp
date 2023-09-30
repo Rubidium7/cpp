@@ -6,28 +6,12 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 15:53:26 by nlonka            #+#    #+#             */
-/*   Updated: 2023/09/30 16:54:21 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/09/30 20:30:48 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-
-void	divorce_lawyer(Bureaucrat **mutsis, Bureaucrat **faijas)
-{
-	if (*mutsis)
-	{
-		delete *mutsis;
-		*mutsis = nullptr;
-	}
-	if (*faijas)
-	{
-		delete *faijas;
-		*mutsis = nullptr;
-	}
-	*faijas = nullptr;
-	*mutsis = nullptr;
-}
 
 int main()
 {
