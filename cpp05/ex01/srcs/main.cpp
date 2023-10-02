@@ -20,6 +20,7 @@ int main()
 	Form	form2(tmp);
 	Form	form3("free_harkis_rouheseos_for_all", 130, 2);
 	Bureaucrat	anti_mutsis("anti_mutsis", 49);
+	Bureaucrat	faijas("faijas", 1);
 
 	std::cout << std::endl << form1;
 	std::cout << std::endl << form2;
@@ -28,12 +29,13 @@ int main()
 	anti_mutsis.signForm(form1);
 	anti_mutsis.signForm(form2);
 	anti_mutsis.signForm(form3);
+	faijas.signForm(form1);
 
 	std::cout << std::endl << form2;
 
 	try
 	{
-		std::cout << std::endl << "trying to sign form 'why_u_do_this':" << std::endl;
+		std::cout << std::endl << "trying to create form 'why_u_do_this':" << std::endl;
 		Form	fail("why_u_do_this", 0, 4);
 	}
 	catch (std::exception &e)

@@ -36,7 +36,6 @@ int main()
 	std::cout << *rform << std::endl;
 	std::cout << *pform << std::endl;
 	std::cout << *sform << std::endl;
-	std::cout << std::endl;
 	meta.signForm(*rform);
 	marvin.signForm(*rform);
 	std::cout << std::endl;

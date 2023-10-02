@@ -31,22 +31,14 @@ int main()
 		faijas = new Bureaucrat(*mutsis);
 		faijas->decrementGrade();
 		std::cout << *faijas << std::endl;
-		divorce_lawyer(&mutsis, &faijas);	
+		divorce_lawyer(&mutsis, &faijas);
 	}
-	catch (Bureaucrat::GradeTooLowException &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+	\
 	catch (std::exception &e)
 	{
-
 		std::cerr << e.what() << std::endl;
 	}
-	divorce_lawyer(&mutsis, &faijas);	
+	divorce_lawyer(&mutsis, &faijas);
 	try
 	{
 		faijas = new Bureaucrat("faijas", 2);
@@ -55,19 +47,11 @@ int main()
 		std::cout << *faijas << std::endl;
 		mutsis = new Bureaucrat("mutsis", -43);
 	}
-	catch (Bureaucrat::GradeTooLowException &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
 	catch (std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	divorce_lawyer(&mutsis, &faijas);	
+	divorce_lawyer(&mutsis, &faijas);
 	std::cout << "it's 5pm, go home" << std::endl;
 
 	return (0);

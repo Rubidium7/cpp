@@ -57,7 +57,7 @@ class AForm
 			public:
 				virtual const char *what() const throw()
 				{
-					return ("the form is not signed, the little scoundrel");
+					return ("the form is not signed, you little scoundrel");
 				}
 		};
 
