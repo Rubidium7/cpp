@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:45:02 by nlonka            #+#    #+#             */
-/*   Updated: 2023/10/18 19:10:48 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/10/19 14:46:13 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <limits>
 # include <cctype>
+# include <string>
 # include <iostream>
 # include <iomanip>
 
@@ -41,6 +42,7 @@ class ScalarConverter
 
 		static Type	_isInf(std::string &str);
 		static Type	_isNan(std::string &str);
+		static size_t _findSize(std::string &str);
 		static bool	_isOverflow(Type type, bool negative, int num, std::string &str);
 		static bool	_weirdInput(std::string &str);
 		static Type	_detectType(std::string &str);

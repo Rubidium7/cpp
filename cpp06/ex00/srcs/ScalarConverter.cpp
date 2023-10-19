@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:50:56 by nlonka            #+#    #+#             */
-/*   Updated: 2023/10/18 19:45:48 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/10/19 14:46:16 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,29 @@ Type	ScalarConverter::_isNan(std::string &str)
 	return (NOPE);
 }
 
+size_t	ScalarConverter::_findSize(std::string &str)
+{
+	size_t	leading_zeroes;
+	size_t	i = 0;
+
+	if (str.at(0) == '+' || str.at(0) == '-')
+		i++;
+	for (; i < str.size() - 1; i++)
+	{
+		if (str.at(i + 1) == '.')
+			break ;
+		if (str.at(i) != '0')
+			break ;
+	}
+	leading_zeroes = i;
+	for (i = leading_zeroes; i != str.size(); i++)
+	{
+		if (str.at(i) == '.')
+			break ;
+	}
+	return (i - leading_zeroes);
+}
+
 bool	ScalarConverter::_isOverflow(Type type, bool negative, int num, std::string &str)
 {
 	if (type == CHAR && (num < 0 || num > 255))
@@ -45,7 +68,7 @@ bool	ScalarConverter::_isOverflow(Type type, bool negative, int num, std::string
 		tmp /= 10;
 		amount_of_digits++;
 	}
-	if (amount_of_digits != str.size() - negative)
+	if (amount_of_digits != _findSize(str))
 		return (true);
 	return (false);
 }
@@ -65,6 +88,11 @@ bool	ScalarConverter::_weirdInput(std::string &str)
 			comma_count++;
 			if (i == 0 || i + 1 == str.size() || comma_count != 1)
 				return (true);
+		}
+		else if (str.at(i) == ',')
+		{
+			std::cout << "excel be like:" << std::endl << "    ";
+			return (true);
 		}
 		else if (!isdigit(str.at(i)))
 			return (true);
@@ -123,7 +151,6 @@ void	ScalarConverter::_charConvert(Type type, std::string &str)
 		}
 	}
 	c = static_cast<char>(num);
-	std::cout << num << std::endl;
 	if (isprint(c))
 		std::cout << "'" << c << "'" << std::endl;
 	else
@@ -174,7 +201,10 @@ void	ScalarConverter::_floatConvert(Type type, std::string &str)
 		tmp = atof(str.c_str());
 		num = static_cast<float>(tmp);
 	}
-	std::cout << std::fixed << std::setprecision(1) << num << "f" << std::endl;
+	if (num - static_cast<int>(num) == 0)
+		std::cout << num << ".0f" << std::endl;
+	else
+		std::cout << num << "f" << std::endl;
 }
 
 void	ScalarConverter::_doubleConvert(Type type, std::string &str)
@@ -197,7 +227,10 @@ void	ScalarConverter::_doubleConvert(Type type, std::string &str)
 		tmp = atof(str.c_str());
 		num = static_cast<double>(tmp);
 	}
-	std::cout << num << std::endl;
+	if (num - static_cast<int>(num) == 0)
+		std::cout << num << ".0" << std::endl;
+	else
+		std::cout << num << std::endl;
 }
 
 void	ScalarConverter::convert(std::string &str)
