@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:50:56 by nlonka            #+#    #+#             */
-/*   Updated: 2023/10/19 14:46:16 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/10/20 15:50:33 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void	ScalarConverter::_intConvert(Type type, std::string &str)
 		num = static_cast<int>(str[0]);
 	else
 		num = atoi(str.c_str());
-	if (_isOverflow(INT, negative, num, str))
+	if (type != CHAR && _isOverflow(INT, negative, num, str))
 		std::cout << "overflow" << std::endl;
 	else
 		std::cout << num << std::endl;
