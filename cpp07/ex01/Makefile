@@ -17,7 +17,7 @@ FLAGS = -std=c++98 -Wall -Wextra -Werror -I includes
 
 OBJS_DIR = obj/
 SRCS_DIR = srcs/
-SRCS = given_main.cpp
+SRCS = main.cpp Fixed.cpp
 
 OBJ_FILES = $(SRCS:.cpp=.o)
 
