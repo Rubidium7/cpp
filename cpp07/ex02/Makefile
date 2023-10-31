@@ -7,7 +7,7 @@ MAGENTA = \033[0;35m
 END = \033[0m
 
 #binary name
-NAME = eaterator
+NAME = array_of_sunshine
 
 #compiler
 C = c++
@@ -17,7 +17,7 @@ FLAGS = -std=c++98 -Wall -Wextra -Werror -I includes
 
 OBJS_DIR = obj/
 SRCS_DIR = srcs/
-SRCS = given_main.cpp
+SRCS = main.cpp Fixed.cpp
 
 OBJ_FILES = $(SRCS:.cpp=.o)
 

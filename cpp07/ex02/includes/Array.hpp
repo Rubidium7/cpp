@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 20:23:29 by nlonka            #+#    #+#             */
-/*   Updated: 2023/10/31 14:39:03 by nlonka           ###   ########.fr       */
+/*   Created: 2023/10/30 21:03:37 by nlonka            #+#    #+#             */
+/*   Updated: 2023/10/30 21:44:03 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-# define ITER_HPP
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
 
-# include <cstddef>
+# include <iostream>
 
-template <typename T>
-void iter(T *ptr, std::size_t len, void (*f)(T const &))
+template<typename T>
+class Array
 {
-	for (std::size_t i = 0; i != len; i++)
-		f(ptr[i]);
-}
+	public:
+		Array();
+		Array(unsigned int n);
+		Array(const Array<T> &other);
+
+		Array<T>	&operator=(const Array<T> &other);
+		T			&operator[](const unsigned int index) const;
+
+		unsigned int size() const;
+
+		~Array();
+	
+	private:
+		T				*_array;
+		unsigned int	_size;
+};
+
+#include "../srcs/Array.tpp"
 
 #endif
