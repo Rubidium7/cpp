@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:03:37 by nlonka            #+#    #+#             */
-/*   Updated: 2023/10/30 21:44:03 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/01 14:08:48 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ class Array
 		Array(const Array<T> &other);
 
 		Array<T>	&operator=(const Array<T> &other);
-		T			&operator[](const unsigned int index) const;
+		T			&operator[](const unsigned int index);
+		const T		&operator[](const unsigned int index) const;
 
 		unsigned int size() const;
 

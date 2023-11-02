@@ -15,15 +15,15 @@
 #include <iostream>
 
 template <typename T>
-void	printer(T &val)
+void	printer(T const &val)
 {
 	std::cout << val << std::endl;
 }
 
 template <typename T>
-void	incrementer(const T &val)
+void	incrementer(T &val)
 {
-	std::cout << val + 1 << std::endl;
+	val++;
 }
 
 int main()
@@ -31,16 +31,18 @@ int main()
 	Fixed far[] = {1, 4, 5.6f, 6.9f, 10};
 
 	std::cout << "fixed array:" << std::endl;
-	iter(far, 5, printer);
-	std::cout << "that incremented by one:" << std::endl;
-	iter(far, 5, incrementer);
+	iter(far, 5, printer<const Fixed>);
+	std::cout << "that incremented:" << std::endl;
+	iter(far, 5, incrementer<Fixed>);
+    iter(far, 5, printer<const Fixed>);
 
 
 	int iar[] = {0, 1, 2, 3, 4, 5};
 
 	std::cout << "int array:" << std::endl;
-	iter(iar, 6, printer);
-	std::cout << "that incremented by one:" << std::endl;
-	iter(iar, 6, incrementer);
+	iter(iar, 6, printer<const int>);
+	std::cout << "that incremented:" << std::endl;
+	iter(iar, 6, incrementer<int>);
+    iter(iar, 6, printer<const int>);
 	return (0);
 }

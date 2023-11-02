@@ -31,7 +31,15 @@ Array<T> &Array<T>::operator=(const Array<T> &other)
 }
 
 template <typename T>
-T &Array<T>::operator[](const unsigned int index) const
+T &Array<T>::operator[](const unsigned int index)
+{
+	if (index < 0 || index >= _size)
+		throw std::exception();
+	return (_array[index]);
+}
+
+template <typename T>
+const T &Array<T>::operator[](const unsigned int index) const
 {
 	if (index < 0 || index >= _size)
 		throw std::exception();

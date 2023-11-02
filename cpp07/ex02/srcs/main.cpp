@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:37:02 by nlonka            #+#    #+#             */
-/*   Updated: 2023/10/31 15:51:17 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/01 14:12:03 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ int main()
 
 	for (size_t i = 0; i != DIZE; i++)
 		std::cout << "d[" << i << "] = " << d[i] << std::endl;
+
+	//const test (shouldn't compile)
+	//const Array<int> const_tab(DIZE);
+	//const_tab[0] = 420;
 
 	return (0);
 }
