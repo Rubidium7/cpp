@@ -7,7 +7,7 @@ MAGENTA = \033[0;35m
 END = \033[0m
 
 #binary name
-NAME = lol_change_me
+NAME = hardlost
 
 #compiler
 C = c++
