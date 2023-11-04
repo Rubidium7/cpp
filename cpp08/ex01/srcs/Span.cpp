@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:29:34 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/03 14:14:20 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/04 20:25:53 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ unsigned int Span::shortestSpan() const
 		throw std::exception();
 	std::vector<int> sorted = this->_store;
 	std::sort(sorted.begin(), sorted.end());
-	for (size_t i = 0; i + 1 < _store.size(); i++)
+	for (size_t i = 0; i + 1 < sorted.size(); i++)
 	{
 		if (static_cast<unsigned int>(sorted.at(i + 1) - sorted.at(i)) < diff)
 			diff = static_cast<unsigned int>(sorted.at(i + 1) - sorted.at(i));
@@ -77,7 +77,9 @@ unsigned int Span::longestSpan() const
 {
 	if (_store.size() < 2)
 		throw std::exception();
-	return *max_element(_store.begin(), _store.end()) - *min_element(_store.begin(), _store.end());
+	int max = *max_element(_store.begin(), _store.end());
+	int min = *min_element(_store.begin(), _store.end());
+	return max - min;
 }
 
 void	Span::printNumbers() const
@@ -85,6 +87,8 @@ void	Span::printNumbers() const
 	for (size_t i = 0; i != _store.size(); i++)
 		std::cout << "vector[" << i << "] = " << _store.at(i) << std::endl;
 }
+
+size_t	Span::size() const { return (_store.size()); }
 
 Span::~Span()
 {}

@@ -6,11 +6,30 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:05:02 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/03 14:15:11 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/04 20:24:11 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <cstdlib>
+#include <ctime>
+
+void	big()
+{
+	std::srand(std::time(NULL));
+	Span sp = Span(WAY_MORE);
+	int num;
+	for (size_t i = 0; i != WAY_MORE; i++)
+	{
+		num = rand();
+		if (rand() % 3)
+			num -= rand();
+		sp.addNumber(num);
+	}
+	std::cout << "added " << sp.size() << " numbers to span" << std::endl;
+	std::cout << "shortest span: " << sp.shortestSpan() << std::endl;
+	std::cout << "longest span: " <<  sp.longestSpan() << std::endl << std::endl;
+}
 
 int main()
 {
@@ -37,16 +56,33 @@ int main()
 	std::cout << "shortest span: " << sp2.shortestSpan() << std::endl;
 	std::cout << "longest span: " << sp2.longestSpan() << std::endl << std::endl;
 
-	int tmp2[2] = {INT_MAX, INT_MIN};
-	std::vector<int> v2(tmp2, tmp2 + 2);
 
 	Span sp3 = Span(2);
 
-	sp3.addNumber(v2);
+	std::cout << "trying to find span in empty uh span:" << std::endl;
+	try {
+		sp3.shortestSpan();
+	}
+	catch (std::exception &e) {
+		std::cout << "didn't work :)" << std::endl << std::endl;
+	}
+	sp3.addNumber(INT_MIN);
+	sp3.addNumber(INT_MAX);
 
 	sp3.printNumbers();
 	std::cout << "shortest span: " << sp3.shortestSpan() << std::endl;
 	std::cout << "longest span: " << sp3.longestSpan() << std::endl << std::endl;
+
+	std::cout << "trying to add a number to a full span:" << std::endl;
+	try {
+		sp3.addNumber(69);
+	}
+	catch (std::exception &e) {
+		std::cout << "didn't work :^)" << std::endl << std::endl;
+	}
+
+	std::cout << "testing " << WAY_MORE << " numbers:" << std::endl;
+	big();
 
 	return 0;
 }

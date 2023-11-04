@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:19:30 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/03 14:00:34 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/04 19:52:16 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 # include <vector>
 # include <algorithm>
+
+# define WAY_MORE 13700
 
 class Span
 {
@@ -34,6 +36,7 @@ class Span
 		unsigned int		longestSpan() const;
 
 		void	printNumbers() const;
+		size_t	size() const;
 		
 	private:
 		Span();
