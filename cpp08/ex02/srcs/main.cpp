@@ -6,13 +6,35 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:28:26 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/04 19:43:27 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/06 13:15:01 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <cstdlib>
 #include <ctime>
+
+void	const_iter_test()
+{
+	MutantStack<float>	ms;
+
+	ms.push(0.1);
+	ms.push(52);
+	ms.push(-0.4);
+	ms.push(434523);
+	MutantStack<float>::const_iterator it = ms.cbegin();
+
+	size_t i = 0;
+	std::cout << "const test's stack contains:" << std::endl;
+	while (it != ms.cend())
+	{
+		std::cout << i << "[" << *it << "]" << std::endl;
+		it++;
+		i++;
+		//const ?
+		//*it += 1;
+	}
+}
 
 void	biggo_test()
 {
@@ -88,9 +110,10 @@ int main()
 
 	++lit;
 	--lit;
-	std::cout << "list contents:" << std::endl;
+	std::cout << "list contents after + 1:" << std::endl;
 	while (lit != lite)
 	{
+		*lit += 1;
 		std::cout << i << "[" << *lit << "]" << std::endl;
 		++lit;
 		i++;
@@ -152,9 +175,10 @@ int main()
 
 	++it;
 	--it;
-	std::cout << "mutantstack contents:" << std::endl;
+	std::cout << "mutantstack contents after + 1:" << std::endl;
 	while (it != ite)
 	{
+		*it += 1;
 		std::cout << i << "[" << *it << "]" << std::endl;
 		++it;
 		i++;
@@ -200,9 +224,10 @@ int main()
 
 	std::stack<int> s(mstack);
 
+	const_iter_test();
 	std::string buf;
 
-	std::cout << "ready for the biggo test???" << std::endl;
+	std::cout << "ready for the biiiiiiiigg test???" << std::endl;
 	std::cout << "(y/n)" << std::endl;
 	while (BIGGO_TIME)
 	{
