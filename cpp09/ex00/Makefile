@@ -7,7 +7,7 @@ MAGENTA = \033[0;35m
 END = \033[0m
 
 #binary name
-NAME = lol_change_me
+NAME = cryptography_or_something_idk
 
 #compiler
 C = c++
@@ -17,7 +17,7 @@ FLAGS = -std=c++98 -Wall -Wextra -Werror -I includes
 
 OBJS_DIR = obj/
 SRCS_DIR = srcs/
-SRCS = main.cpp
+SRCS = main.cpp BitcoinExchange.cpp
 
 OBJ_FILES = $(SRCS:.cpp=.o)
 
