@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:30:34 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/08 17:39:17 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/08 17:58:48 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void	BitcoinExchange::_processLine(std::string &line)
 	if (_checkAmount(value))
 		return ;
 	std::map<std::string, float>::iterator it = _db.lower_bound(date);
-	if (it == _db.end())
+	if (it == _db.begin() && it->first > date)
 	{
 		std::cout << "Error: the date is before the dates in the database => " << date << std::endl;
 		return ;
