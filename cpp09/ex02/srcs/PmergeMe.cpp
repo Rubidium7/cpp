@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 21:38:07 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/08 23:00:52 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/09 12:50:22 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	PmergeMe::_sortVectorPairs()
 void	PmergeMe::sortVector()
 {
 	_sortVectorPairs();
+	_sortVectorRecursively();
 	std::cout << "after:" << std::endl;
 	printVector();
 }
