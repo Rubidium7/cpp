@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 21:34:34 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/08 23:01:19 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/10 18:01:21 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ bool	validate_input(char **av)
 		if (not_valid_num(av[i]))
 			return (true);
 	}
-	if (has_duplicate(av))
-		return karen("duplicates found.");
+	//if (has_duplicate(av))
+	//	return karen("duplicates found.");
 	return (false);
 }
 
@@ -73,5 +73,6 @@ int main(int ac, char **av)
 	vectorMerge.sortVector();
 	//time
 	//PmergeMe	listMerge(LIST, ac - 1, av + 1);
+	//std::cout << "yo" << std::endl;
 	return 0;
 }

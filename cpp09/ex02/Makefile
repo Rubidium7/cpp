@@ -7,7 +7,7 @@ MAGENTA = \033[0;35m
 END = \033[0m
 
 #binary name
-NAME = PmergeMe 
+NAME = PmergeMe
 
 #compiler
 C = c++
