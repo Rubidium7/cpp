@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 21:33:34 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/10 17:50:00 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/10 19:30:54 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ class PmergeMe
 		void		_recursiveInsertionSort(pairvect &vect, size_t n);
 		size_t		_jacobsthal(size_t n);
 		void		_jacobsthalArray(size_t size);
+		size_t		_binarySearch(std::vector<int> &vect, size_t right, int b);
+		std::vector<int>::iterator _createIterator(size_t index, std::vector<int> &vect);
 		void		_insertSmallerIntoMain(pairvect &vect);
 		std::vector<int> _sortedVect;
 		pairvect	_vect;

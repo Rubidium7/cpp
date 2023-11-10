@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 21:38:07 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/10 18:55:18 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/10 19:30:52 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	PmergeMe::_jacobsthalArray(size_t size)
 	size_t	begin;
 	size_t	end = 1;
 
-	_jarray.push_back(0);
 	_jarray.push_back(1);
 	while (_jacobsthal(jacob_index) < size - 1)
 	{
@@ -123,15 +122,50 @@ void	PmergeMe::_jacobsthalArray(size_t size)
 	   std::cout << _jarray.at(i) << std::endl;	
 }
 
+size_t	PmergeMe::_binarySearch(std::vector<int> &vect, size_t right, int b)
+{
+	size_t left = 0;
+	size_t i;
+
+
+	while (left <= right)
+	{
+		i = (left + right) / 2;
+		if (vect.at(i) < b)
+			left = i + 1;
+		else if (vect.at(i) > b)
+			right = i - 1;
+		else
+			return i;
+	}
+	return (-1);
+}
+
+std::vector<int>::iterator	PmergeMe::_createIterator(size_t index, std::vector<int> &vect)
+{
+	std::vector<int>::iterator it = vect.begin();
+
+	for (size_t i = 0; i != index; i++)
+		it++;
+	return (it);
+}
+
 void	PmergeMe::_insertSmallerIntoMain(pairvect &vect)
 {
 	for (size_t i = 0; i != vect.size(); i++)
-		_sortedVect.at(i) = vect.at(i).first;
+		_sortedVect.push_back(vect.at(i).first);
+	_sortedVect.insert(_sortedVect.begin(), vect.at(0).second);
 	for (size_t i = 0; i != vect.size(); i++)
 	{
-		//size_t which = _jarray.at(i);
+		size_t which = _jarray.at(i);
+		std::cout << "which: " << which << std::endl;
+		std::cout << "vect size: " << vect.size() << std::endl;
+		size_t index = _binarySearch(_sortedVect, which - 1, vect.at(which).second);
+		if (index < 0)
+			std::cout << "Error in bts" << std::endl; return ;
+		std::vector<int>::iterator where = _createIterator(index, _sortedVect);
+		_sortedVect.insert(where, vect.at(which).second);
 	}
-	(void)vect;
 }
 
 void	PmergeMe::sortVector()
@@ -142,7 +176,11 @@ void	PmergeMe::sortVector()
 	printVector();
 	std::cout << "jacobsthal:" << std::endl;
 	_jacobsthalArray(_vect.size() + 3);
-	//_insertSmallerIntoMain(_vect);
+	_insertSmallerIntoMain(_vect);
+	std::cout << "after:" << std::endl;
+	for (size_t i = 0; i != _sortedVect.size(); i++)
+		std::cout << _sortedVect.at(i) << " ";
+	std::cout << std::endl;
 }
 
 void	PmergeMe::printVector()

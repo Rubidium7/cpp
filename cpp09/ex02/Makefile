@@ -13,7 +13,7 @@ NAME = PmergeMe
 C = c++
 
 #compilation flags
-FLAGS = -std=c++98 -Wall -Wextra -Werror -I includes
+FLAGS = -std=c++98 -Wall -Wextra -Werror -g -I includes
 
 OBJS_DIR = obj/
 SRCS_DIR = srcs/
