@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 21:33:34 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/10 19:30:54 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/13 20:33:16 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ class PmergeMe
 		void		_sortPairs(pairvect &vect);
 		void		_recursiveInsertionSort(pairvect &vect, size_t n);
 		size_t		_jacobsthal(size_t n);
-		void		_jacobsthalArray(size_t size);
 		size_t		_binarySearch(std::vector<int> &vect, size_t right, int b);
+		size_t		_indexOf(std::vector<int> &vect, int num);
 		std::vector<int>::iterator _createIterator(size_t index, std::vector<int> &vect);
 		void		_insertSmallerIntoMain(pairvect &vect);
+		bool		_isOk(std::vector<int> &sorted, pairvect &sec);
 		std::vector<int> _sortedVect;
 		pairvect	_vect;
 		pairlist	_list;
 		std::vector<size_t>	_jarray;
-		int			_amount;
-		int			_straggler;
+		size_t		_amount;
 };
 
 #endif
