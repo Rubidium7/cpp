@@ -56,8 +56,8 @@ bool	validate_input(char **av)
 		if (not_valid_num(av[i]))
 			return (true);
 	}
-	if (has_duplicate(av))
-		return karen("duplicates found."), false;
+//	if (has_duplicate(av))
+//		return karen("duplicates found."), false;
 	return (false);
 }
 
@@ -68,9 +68,9 @@ int main(int ac, char **av)
 	if (validate_input(av + 1))
 		return 1;
 	//time
-	PmergeMe	vectorMerge(VECTOR, ac - 1, av + 1);
+	PmergeMe<std::vector<int>, pairvect>	vectorMerge(ac - 1, av + 1);
 
-	vectorMerge.sortVector();
+	vectorMerge.sort();
 	//time
 	//PmergeMe	listMerge(LIST, ac - 1, av + 1);
 	//std::cout << "yo" << std::endl;

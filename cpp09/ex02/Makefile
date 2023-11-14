@@ -17,7 +17,7 @@ FLAGS = -std=c++98 -Wall -Wextra -Werror -g -I includes
 
 OBJS_DIR = obj/
 SRCS_DIR = srcs/
-SRCS = main.cpp PmergeMe.cpp
+SRCS = main.cpp
 
 OBJ_FILES = $(SRCS:.cpp=.o)
 
@@ -35,7 +35,7 @@ $(OBJS_DIR):
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.cpp
 	@$(C) $(FLAGS) -c $< -o $@
-	@echo "$(BLUE)$@ created$(END)" 
+	@echo "$(BLUE)$@ created$(END)"
 
 clean:
 	@rm -f $(OBJS)

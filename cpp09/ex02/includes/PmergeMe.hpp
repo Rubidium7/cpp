@@ -16,44 +16,50 @@
 # include <iostream>
 # include <vector>
 # include <list>
+# include <deque>
 # include <utility>
+# include <sys/time.h>
 
 # define EMPTY -1
-# define VECTOR 1
-# define LIST 2
 
-typedef std::vector<std::pair<int, int> > pairvect;
-typedef std::list<std::pair<int, int> > pairlist;
+typedef std::pair<int, int> intpair;
 
+typedef std::vector<intpair> pairvect;
+typedef std::deque<intpair> pairdeque;
+typedef std::list<intpair> pairlist;
+
+template <typename T, typename pair>
 class PmergeMe
 {
 	public:
-		PmergeMe(int type, int size, char **numbers);
-		PmergeMe(const PmergeMe &src);
+		PmergeMe(int size, char **numbers);
+		PmergeMe(const PmergeMe<T, pair> &src);
 		~PmergeMe();
 
-		PmergeMe &operator=(const PmergeMe &rhs);
+		PmergeMe<T, pair> &operator=(const PmergeMe<T, pair> &rhs);
 
-		void	sortVector();
-		void	printVector();
+		void	sort();
 
 	private:
 		PmergeMe();
-		void		_pairUpToVect(char **numbers);
-		//void		_pairUpToList(char **numbers);
-		void		_sortPairs(pairvect &vect);
-		void		_recursiveInsertionSort(pairvect &vect, size_t n);
+		void		_pairUp(char **numbers);
+		void		_sortPairs();
+		void		_recursiveInsertionSort(size_t n);
 		size_t		_jacobsthal(size_t n);
-		size_t		_binarySearch(std::vector<int> &vect, size_t right, int b);
-		size_t		_indexOf(std::vector<int> &vect, int num);
-		std::vector<int>::iterator _createIterator(size_t index, std::vector<int> &vect);
-		void		_insertSmallerIntoMain(pairvect &vect);
-		bool		_isOk(std::vector<int> &sorted, pairvect &sec);
-		std::vector<int> _sortedVect;
-		pairvect	_vect;
-		pairlist	_list;
-		std::vector<size_t>	_jarray;
+		size_t		_binarySearch(size_t right, int b);
+		size_t		_whereInSorted(int num);
+		void		_insertSmallerIntoMain();
+		void		_startUpSorted();
+		void		_timeDiff();
+		bool		_isOk();
+		void		_printPair();
+		void		_printer();
+		T			_sorted;
+		pair		_pairs;
 		size_t		_amount;
+		struct timeval _startTime;
 };
+
+#include "../srcs/PmergeMe.tpp"
 
 #endif
