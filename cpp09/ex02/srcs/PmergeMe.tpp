@@ -12,13 +12,14 @@
 
 #include "PmergeMe.hpp"
 
-void	print_array(char **numbers)
+template <typename T, typename pair>
+void	PmergeMe<T, pair>::printOriginal()
 {
 	std::cout << "Before: ";
-	for (size_t i = 0; numbers[i]; i++)
+	for (size_t i = 0; _og[i]; i++)
 	{
-		std::cout << numbers[i];
-		if (numbers[i + 1])
+		std::cout << _og[i];
+		if (_og[i + 1])
 			std::cout << " ";
 		else
 			std::cout << std::endl;
@@ -52,7 +53,10 @@ void	PmergeMe<T, pair>::_pairUp(char **numbers)
 	if (_amount % 2)
 	{
 		intpair tmp;
-		tmp.first = atoi(numbers[i + 1]);
+		if (numbers[i + 1])
+			tmp.first = atoi(numbers[i + 1]);
+		else
+			tmp.first = atoi(numbers[i]);
 		tmp.second = EMPTY;
 		_pairs.push_back(tmp);
 	}
@@ -61,7 +65,7 @@ void	PmergeMe<T, pair>::_pairUp(char **numbers)
 template <typename T, typename pair>
 PmergeMe<T, pair>::PmergeMe(int size, char **numbers) : _amount(size)
 {
-	print_array(numbers);
+	_og = numbers;
 	gettimeofday(&_startTime, NULL);
 	_pairUp(numbers);
 }
@@ -102,19 +106,17 @@ void	PmergeMe<T, pair>::_recursiveInsertionSort(size_t n)
 
 	if (n <= 1)
 		return ;
-	last = createIterator(n - 1, _pairs);
 	_recursiveInsertionSort(n - 1);
+	last = createIterator(n - 1, _pairs);
 	typename pair::iterator	it = _pairs.begin();
 	while (it != last)
 	{
 		if ((*it).first >= (*last).first)
 		{
-			typename pair::iterator where = it;
-			intpair tmp = _pairs.at(n - 1);
-			while (it != last)
-				it++;
-			_pairs.erase(it);
-			_pairs.insert(where, tmp);
+			_pairs.insert(it, *last);
+			last = createIterator(n, _pairs);
+			_pairs.erase(last);
+			//_printPair(OFF);
 			break ;
 		}
 		it++;
@@ -196,11 +198,11 @@ void	PmergeMe<T, pair>::_insertSmallerIntoMain()
 }
 
 template <typename T, typename pair>
-bool	PmergeMe<T, pair>::_isOk()
+bool	PmergeMe<T, pair>::isOk()
 {
 	for (size_t i = 0; i + 1 < _sorted.size(); i++)
 		if (_sorted.at(i) > _sorted.at(i + 1))
-			{ std::cout << "at " << i << std::endl; return (false);}
+			return (false);
 	for (size_t i = 0; i != _pairs.size(); i++)
 		if (_pairs.at(i).second != EMPTY)
 			return (false);
@@ -218,41 +220,31 @@ void	PmergeMe<T, pair>::_startUpSorted()
 }
 
 template <typename T, typename pair>
-void	PmergeMe<T, pair>::_timeDiff()
+void	PmergeMe<T, pair>::timeDiff()
 {
-	struct timeval end;
-
-	gettimeofday(&end, NULL);
 	suseconds_t milliseconds =
-		(end.tv_sec * 1000 + end.tv_usec / 1000)
+		(_endTime.tv_sec * 1000 + _endTime.tv_usec / 1000)
 		- (_startTime.tv_sec * 1000 + _startTime.tv_usec / 1000);
-	//suseconds_t microseconds = end.tv_usec % 1000 - _startTime.tv_usec % 1000;
-	std::cout << "that took " << milliseconds;
-
-	//std::cout << "." << microseconds;
-	std::cout << " milliseconds" << std::endl;
+	suseconds_t microseconds = _endTime.tv_usec - _startTime.tv_usec;
+	if (milliseconds > 10)
+		std::cout << milliseconds << " ms" << std::endl;
+	else
+		std::cout << microseconds << " us" << std::endl;
 }
 
 template <typename T, typename pair>
 void	PmergeMe<T, pair>::sort()
 {
-
 	_sortPairs();
 	_recursiveInsertionSort(_pairs.size());
 	_startUpSorted();
 	_insertSmallerIntoMain();
-	std::cout << "After: ";
-	_printer();
-	_timeDiff();
-	if (_isOk())
-		std::cout << "sort successful" << std::endl;
-	else
-		std::cout << "sort fucked up.." << std::endl;
+	gettimeofday(&_endTime, NULL);
 
 }
 
 template <typename T, typename pair>
-void	PmergeMe<T, pair>::_printPair()
+void	PmergeMe<T, pair>::_printPair(int mode)
 {
 	for (size_t i = 0; i != _pairs.size(); i++)
 	{
@@ -261,12 +253,15 @@ void	PmergeMe<T, pair>::_printPair()
 			std::cout << " & " << _pairs.at(i).second << std::endl;
 		else
 			std::cout << std::endl;
+		if (mode && i + 1 != _pairs.size() && _pairs.at(i).first > _pairs.at(i + 1).first)
+			std::cout << "not at the right place ^" << std::endl;
 	}
 }
 
 template <typename T, typename pair>
-void	PmergeMe<T, pair>::_printer()
+void	PmergeMe<T, pair>::printSorted()
 {
+	std::cout << "After: ";
 	for (size_t i = 0; i != _sorted.size(); i++)
 	{
 		std::cout << _sorted.at(i);

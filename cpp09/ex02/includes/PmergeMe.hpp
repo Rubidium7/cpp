@@ -21,6 +21,10 @@
 # include <sys/time.h>
 
 # define EMPTY -1
+# define ON 1
+# define OFF 0
+# define RED "\033[1m\033[31m"
+# define RESET "\033[0m"
 
 typedef std::pair<int, int> intpair;
 
@@ -38,7 +42,11 @@ class PmergeMe
 
 		PmergeMe<T, pair> &operator=(const PmergeMe<T, pair> &rhs);
 
+		void	printOriginal();
 		void	sort();
+		void	timeDiff();
+		void	printSorted();
+		bool	isOk();
 
 	private:
 		PmergeMe();
@@ -50,14 +58,13 @@ class PmergeMe
 		size_t		_whereInSorted(int num);
 		void		_insertSmallerIntoMain();
 		void		_startUpSorted();
-		void		_timeDiff();
-		bool		_isOk();
-		void		_printPair();
-		void		_printer();
+		void		_printPair(int mode);
+		char		**_og;
 		T			_sorted;
 		pair		_pairs;
 		size_t		_amount;
 		struct timeval _startTime;
+		struct timeval _endTime;
 };
 
 #include "../srcs/PmergeMe.tpp"

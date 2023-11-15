@@ -67,12 +67,19 @@ int main(int ac, char **av)
 		return 0;
 	if (validate_input(av + 1))
 		return 1;
-	//time
 	PmergeMe<std::vector<int>, pairvect>	vectorMerge(ac - 1, av + 1);
-
+	vectorMerge.printOriginal();
 	vectorMerge.sort();
-	//time
-	//PmergeMe	listMerge(LIST, ac - 1, av + 1);
-	//std::cout << "yo" << std::endl;
+	vectorMerge.printSorted();
+	PmergeMe<std::deque<int>, pairdeque>	dequeMerge(ac - 1, av + 1);
+	dequeMerge.sort();
+	std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : ";
+	vectorMerge.timeDiff();
+	std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque : ";
+	dequeMerge.timeDiff();
+	if (!vectorMerge.isOk())
+		std::cout << RED << "vector sort fucked up.." << RESET << std::endl;
+	if (!dequeMerge.isOk())
+		std::cout << RED << "deque sort fucked up.." << RESET  << std::endl;
 	return 0;
 }
