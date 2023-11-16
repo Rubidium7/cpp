@@ -116,7 +116,6 @@ void	PmergeMe<T, pair>::_recursiveInsertionSort(size_t n)
 			_pairs.insert(it, *last);
 			last = createIterator(n, _pairs);
 			_pairs.erase(last);
-			//_printPair(OFF);
 			break ;
 		}
 		it++;
@@ -144,7 +143,6 @@ size_t	PmergeMe<T, pair>::_binarySearch(size_t right, int b)
 	while (left <= right && i < _sorted.size())
 	{
 		i = (left + right) / 2;
-	//	std::cout << i << " size = " << _sorted.size() << std::endl;
 		if (_sorted.at(i) < b)
 			left = i + 1;
 		else if (_sorted.at(i) > b && !(!i || _sorted.at(i - 1) <= b))
@@ -184,8 +182,6 @@ void	PmergeMe<T, pair>::_insertSmallerIntoMain()
 		{
 			if (which >= _pairs.size() || _pairs.at(which).second == EMPTY)
 				{ which--; continue ;}
-		//	std::cout << which << std::endl;
-		//	std::cout << "size = " << _pairs.size() << std::endl;
 			size_t index = _binarySearch(_whereInSorted(_pairs.at(which).second), _pairs.at(which).second);
 			if (index >= _sorted.size())
 				return ;

@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:11:04 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/08 18:39:04 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/16 17:40:27 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 # include <stack>
 # include <sstream>
+# include <limits>
+# include <exception>
 
 typedef enum e_token
 {
@@ -55,6 +57,7 @@ class RPN
 	
 	private:
 		t_token			_identifyToken(std::string &token);
+		bool			_checkOverflow(t_token token, long first, long second);
 		bool			_addToStack(t_token token);
 		std::stack<int> _stack;
 };

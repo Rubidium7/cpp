@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:30:34 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/08 17:58:48 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/16 18:55:10 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ bool	BitcoinExchange::_checkDate(std::string date)
 		else if (!isdigit(date.at(i)))
 			return (true);
 	}
+	int year = atoi(date.substr(0, 4).c_str());
+	int month = atoi(date.substr(5, 2).c_str());
+	int day = atoi(date.substr(8, 2).c_str());
+	if (month < 1 || month > 12 || day < 1 || day > 31)
+		return (true);
+	if (day == 31 && month != 1 && month != 3 && month != 5 && month != 7
+			&& month != 8 && month != 10 && month != 12)
+		return (true);
+	if (month == 2 && day == 30)
+		return (true);
+	if (month == 2 && day == 29 && year % 4 != 0)
+		return (true);
 	return (false);
 }
 
@@ -55,18 +67,21 @@ bool	BitcoinExchange::_insertToDataBase(std::string date, std::string rate)
 	return (false);
 }
 
+
 bool	BitcoinExchange::_safeDataBase(std::ifstream &file)
 {
 	std::string tmp;
 
 	if (!file.good())
 		return (true);
-	file >> tmp;
+	getline(file, tmp);
 	if (tmp != "date,exchange_rate")
 		return (true);
 	while (file.good())
 	{
-		file >> tmp;
+		getline(file, tmp);
+		if (tmp.empty() && file.eof())
+			break ;
 		size_t comma = tmp.find(',');
 		if (!comma || comma == std::string::npos || comma == tmp.size() - 1)
 			return (true);
@@ -131,7 +146,7 @@ bool	BitcoinExchange::_checkAmount(std::string amount)
 	}
 	if (amount.at(0) == '+')
 	{
-		std::cout << "Error: I find plus signs perturbing, please remove it." << std::endl;
+		std::cout << "Error: I find plus signs perturbing, please remove them." << std::endl;
 		return (true);
 	}
 	if (_checkNum(amount))
@@ -156,7 +171,6 @@ void	BitcoinExchange::_processLine(std::string &line)
 	if (line.empty())
 		return ;
 	line.erase(line.end()--);
-	//std::cout << "[" << line << "]" << std::endl;
 	if (line.size() < 14)
 		return (_badInput(line));
 	if (line.at(10) != ' ' || line.at(11) != '|' || line.at(12) != ' ')

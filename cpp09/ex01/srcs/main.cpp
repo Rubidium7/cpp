@@ -6,7 +6,7 @@
 /*   By: nlonka <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:07:16 by nlonka            #+#    #+#             */
-/*   Updated: 2023/11/08 18:47:58 by nlonka           ###   ########.fr       */
+/*   Updated: 2023/11/16 17:42:13 by nlonka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int main(int ac, char **av)
 	}
 	std::string input(av[1]);
 	RPN			calc;
-
 	bool fucked_up = calc.evaluateExpression(input);
+	
 	if (fucked_up)
 		std::cout << "Error" << std::endl;
 	return fucked_up;
